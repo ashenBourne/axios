@@ -7,18 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>axios发送请求</title>
 </head>
-<script src="../axios/dist/axios.js"></script>
+<!-- <script src="../axios/dist/axios.js"></script> -->
+<script  src="./axios.js"></script>
 
 <body>
     <button id="btn">测试axios</button>
     <script>
         document.getElementById("btn").addEventListener("click", (e) => {
-            axios.delete("http://localhost:10086/getUrl", {
+            axios.get("http://localhost:10086/getUrl", {
                 params: {
                     name: "test",
+                    age:30
                 }
             }).then(res => {
-                console.log("f返回值");
                 console.log(res);
             })
         })
