@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios发送请求</title>
+</head>
+<script src="../axios/dist/axios.js"></script>
+
+<body>
+    <button id="btn">测试axios</button>
+    <script>
+        document.getElementById("btn").addEventListener("click", (e) => {
+            axios.delete("http://localhost:10086/getUrl", {
+                params: {
+                    name: "test",
+                }
+            }).then(res => {
+                console.log("f返回值");
+                console.log(res);
+            })
+        })
+    </script>
+</body>
+
+</html>

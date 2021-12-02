@@ -3,7 +3,6 @@
 .tscache
 .DS_Store
 node_modules/
-dist/
 typings/
 coverage/
 test/typescript/axios.js*
