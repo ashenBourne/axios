@@ -21,7 +21,7 @@ app.get('/getUrl', (req, res)=>{
     };
     res.json(data);
 });
-app.post("postUrl",((req,res)=>{
+app.post("/postUrl",((req,res)=>{
     let data = {
         message:"success",
         data:{

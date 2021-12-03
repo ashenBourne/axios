@@ -16,7 +16,6 @@
         // 添加请求拦截器
         axios.interceptors.request.use(function (config) {
             // 在发送请求之前做些什么
-            config.method = "get";
             console.log("请求参数", config);
             return config;
         }, function (error) {
@@ -43,6 +42,14 @@
                     age: 30
                 }
             }).then(res => {
+                console.log(res);
+            })
+            axios.post("http://localhost:10086/postUrl",{
+                data:{
+                    name:"postTest",
+                    age:20
+                }
+            }).then(res=>{
                 console.log(res);
             })
         })
