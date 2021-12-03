@@ -1,16 +1,29 @@
 # axios
-axios源码解析
+&nbsp;&nbsp;&nbsp;&nbsp;axios源码解析
 
 ## 前言
 &nbsp;&nbsp;&nbsp;&nbsp;axios是日常经常使用到的HTTP库，可以工作于node和浏览器中，短小精悍。
 
-&nbsp;&nbsp;&nbsp;&nbsp;作为一名普通的前端开发，源码学习很重要，但一般都是看过没多久，长时间不用就忘掉；所以，细节不重要，重要的是记住“解题思路”。
+&nbsp;&nbsp;&nbsp;&nbsp;作为一名普通的前端开发，源码学习很重要，但一般都是看过没多久，长时间不用就忘掉；所以，记住“解题思路”比较重要。
+
+## 项目文件目录
+/axios axios源码
+
+/myAxios 自己写的丐版axios
+
+    /axios.js   //axios主要功能代码
+    /index.html     //请求实例
+    /serve.js   //node做的本地简陋服务
 
 ## axios源码文件目录
-![image](https://user-images.githubusercontent.com/34472955/144205651-9f1b76ab-3762-436c-bd43-c6ce78326a21.png)
+
+axios源码中，比较重要的是core文件夹
+
 ![image](https://user-images.githubusercontent.com/34472955/144210617-f04aeed8-816e-4d37-88ef-70aaed068b42.png)
 
-## axios原理  
+&nbsp;&nbsp;&nbsp;&nbsp;可以直接看Axios.js的内容，具体的注释和仿写都可以在myAxios中看。
+
+## myAxios原理  
 
 ![axios原理](https://user-images.githubusercontent.com/34472955/144536263-2c514ff5-be83-4bf3-a6f9-2bd09fb552b7.png)
 
