@@ -12,11 +12,15 @@ axios源码解析
 
 ## axios原理  
 
-ps：这里要添原理图片
+![axios原理](https://user-images.githubusercontent.com/34472955/144536263-2c514ff5-be83-4bf3-a6f9-2bd09fb552b7.png)
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;核心思路是将请求拦截器、请求、响应拦截器成对儿放到一个数组中，然后将成对儿的他们分别作为Promise的resolve和reject方法。
 
 &nbsp;&nbsp;&nbsp;&nbsp;假如客户有一个请求拦截器、响应拦截器，这样的话，就有三个Promise（请求拦截器算一对儿、请求算一对儿、响应拦截器算一对儿），这样形成一个Promise链条（request方法导出的也是一个promise）。
+
+&nbsp;&nbsp;&nbsp;&nbsp;最后实例化一个axios，将request导出，在该方法上，将Axios所有别名和属性都绑定下……
+
 
 
 
