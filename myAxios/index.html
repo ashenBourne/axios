@@ -8,16 +8,39 @@
     <title>axios发送请求</title>
 </head>
 <!-- <script src="../axios/dist/axios.js"></script> -->
-<script  src="./axios.js"></script>
+<script src="./axios.js"></script>
 
 <body>
     <button id="btn">测试axios</button>
     <script>
+        // 添加请求拦截器
+        axios.interceptors.request.use(function (config) {
+            // 在发送请求之前做些什么
+            config.method = "get";
+            console.log("请求参数", config);
+            return config;
+        }, function (error) {
+            // 对请求错误做些什么
+            return Promise.reject(error);
+        });
+
+        // 添加响应拦截器
+        axios.interceptors.response.use(function (response) {
+            // 对响应数据做点什么
+            console.log("响应拦截，在此处理数据");
+            console.log(typeof response);
+            // response = { message: "成功了",data:response.data }
+            return JSON.parse(response);
+        }, function (error) {
+            // 对响应错误做点什么
+            console.log("错了吗");
+            return Promise.reject(error);
+        });
         document.getElementById("btn").addEventListener("click", (e) => {
             axios.get("http://localhost:10086/getUrl", {
                 params: {
                     name: "test",
-                    age:30
+                    age: 30
                 }
             }).then(res => {
                 console.log(res);

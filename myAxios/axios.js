@@ -27,29 +27,6 @@ class Axios {
         }
 
     }
-
-    // 请求
-    request(config) {
-        /**
-         * 这是所有Promise数组，前面是请求拦截器，后边是响应拦截器，中间是正常的请求
-         */
-        let chain = [this.dispatchRequest(config), undefined]
-        // 请求拦截器：成对出现
-        this.interceptors.request.handlers.forEach(req => {
-            chain.unshift(req.fulfilled, req.rejected)
-        })
-        // 响应拦截器：成对出现
-        this.interceptors.response.handlers.forEach(res => {
-            chain.push(res.fulfilled, res.rejected)
-        })
-        let promise = Promise.resolve(config)
-        while (chain.length) {
-            promise = promise.then(chain.shift(), chain.shift());
-        }
-
-        return promise;
-
-    }
     // 获取全路径，将get等请求参数合并到路径里
     buildFullPath(config){
         let {params={},baseUrl='',url=''}=config
@@ -61,6 +38,32 @@ class Axios {
         }
         return baseUrl+url+str+arr.join("&")
     }
+
+    // 请求
+    request(config) {
+        /**
+         * 这是所有Promise数组，前面是请求拦截器，后边是响应拦截器，中间是正常的请求
+         * 这里注意不能执行dispatchRequest方法，是在promise中执行的
+         */
+        let chain = [this.dispatchRequest.bind(this), undefined]
+        // 请求拦截器：成对出现
+        this.interceptors.request.handlers.forEach(req => {
+            chain.unshift(req.fulfilled, req.rejected)
+        })
+        // 响应拦截器：成对出现
+        this.interceptors.response.handlers.forEach(res => {
+            chain.push(res.fulfilled, res.rejected)
+        })
+        let promise = Promise.resolve(config)
+        while (chain.length) {
+            promise = promise.then(chain.shift(), chain.shift());
+            console.log(promise);
+        }
+
+        return promise;
+
+    }
+    
     // 发送请求
     dispatchRequest(config) {
         return new Promise((resolve, reject) => {
@@ -128,6 +131,3 @@ function CreateAxios() {
 }
 
 let axios =CreateAxios()
-
-// export default axios
-// module.exports.default = axios;
